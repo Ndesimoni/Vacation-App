@@ -1,6 +1,8 @@
 import styles from "./CountryItem.module.css";
+import PropTypes from "prop-types";
 
 function CountryItem({ country }) {
+  console.log(country);
   return (
     <li className={styles.countryItem}>
       <span>{country.emoji}</span>
@@ -8,5 +10,9 @@ function CountryItem({ country }) {
     </li>
   );
 }
+
+CountryItem.propTypes = {
+  country: PropTypes.object.isRequired,
+};
 
 export default CountryItem;
