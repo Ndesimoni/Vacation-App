@@ -4,8 +4,11 @@ import Spinner from "./Spinner";
 
 import PropTypes from "prop-types";
 import Message from "./Message";
+import { useCities } from "../contexts/CityContext";
 
-const CityList = ({ cities, isLoading }) => {
+const CityList = () => {
+  const { cities, isLoading } = useCities();
+
   if (isLoading) return <Spinner />;
 
   if (!cities.length)
@@ -24,16 +27,5 @@ CityList.propTypes = {
   cities: PropTypes.array.isRequired,
   isLoading: PropTypes.bool.isRequired,
 };
-
-// CityList.propTypes = {
-//   cities: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       id: PropTypes.number.isRequired,
-//       ityName: PropTypes.string.isRequired,
-//       country: PropTypes.string.isRequired,
-//     })
-//   ).isRequired,
-//   isLoading: PropTypes.bool.isRequired,
-// };
 
 export default CityList;
