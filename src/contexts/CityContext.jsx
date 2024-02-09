@@ -36,7 +36,7 @@ CityContext.propTypes = {
   children: PropTypes.any.isRequired,
 };
 
-// custom hook for usecontext
+// custom hook for use context
 const useCities = () => {
   const value = useContext(PostContext);
   if (value === undefined)
