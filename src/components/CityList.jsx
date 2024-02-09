@@ -4,6 +4,7 @@ import Spinner from "./Spinner";
 
 import PropTypes from "prop-types";
 import Message from "./Message";
+
 import { useCities } from "../contexts/CityContext";
 
 const CityList = () => {
