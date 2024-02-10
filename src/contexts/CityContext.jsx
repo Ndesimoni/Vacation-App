@@ -9,6 +9,8 @@ const CityContext = ({ children }) => {
   const [cities, SetCities] = useState([]);
   const [isLoading, setLoading] = useState(false);
 
+  const [currentCity, setCurrentCity] = useState({});
+
   useEffect(() => {
     async function dataFetch() {
       try {
@@ -25,12 +27,26 @@ const CityContext = ({ children }) => {
     dataFetch();
   }, []);
 
+  async function getCities(id) {
+    try {
+      setLoading(true);
+      const res = await fetch(`${BASE_URL}/cities/${id}`);
+      const data = await res.json();
+      setCurrentCity(data);
+    } catch {
+      console.log("error is loading");
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
-    <PostContext.Provider value={{ cities, isLoading }}>
+    <PostContext.Provider value={{ cities, isLoading, currentCity, getCities }}>
       {children}
     </PostContext.Provider>
   );
 };
+
 // prop type validation here
 CityContext.propTypes = {
   children: PropTypes.any.isRequired,

@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import Spinner from "./Spinner";
 import Message from "./Message";
 import styles from "./CountryList.module.css";
@@ -29,8 +28,4 @@ const CountryList = () => {
   );
 };
 
-CountryList.propTypes = {
-  cities: PropTypes.array.isRequired,
-  isLoading: PropTypes.bool.isRequired,
-};
 export default CountryList;
