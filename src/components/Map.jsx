@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import styles from "./Map.module.css";
+import "leaflet/dist/leaflet.css";
+
 import {
   MapContainer,
   TileLayer,
@@ -9,6 +11,7 @@ import {
   useMap,
   useMapEvent,
 } from "react-leaflet";
+
 import { useCities } from "../contexts/CityContext";
 import PropTypes from "prop-types";
 import { useGeolocation } from "../contexts/hooks/useGeolocation";
