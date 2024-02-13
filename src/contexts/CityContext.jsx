@@ -8,7 +8,6 @@ const PostContext = createContext();
 const CityContext = ({ children }) => {
   const [cities, SetCities] = useState([]);
   const [isLoading, setLoading] = useState(false);
-
   const [currentCity, setCurrentCity] = useState({});
 
   useEffect(() => {
@@ -44,10 +43,6 @@ const CityContext = ({ children }) => {
     try {
       setLoading(true);
       const res = await fetch(`${BASE_URL}/cities`, {
-        // method: " POST",
-        // body: JSON.stringify(newCity),
-        // headers: { "Content-Type": "application/json" },
-
         method: "POST",
         body: JSON.stringify(newCity),
         headers: {
@@ -55,8 +50,7 @@ const CityContext = ({ children }) => {
         },
       });
       const data = await res.json();
-      setCurrentCity(...cities, data);
-      // console.log(data);
+      SetCities((cities) => [...cities, data]);
     } catch (err) {
       console.log(err.message);
     } finally {
