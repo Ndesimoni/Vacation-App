@@ -17,10 +17,6 @@ const formatDate = (date) =>
 function City() {
   const { id } = useParams();
 
-  // const [searchParam, setSearchParam] = useSearchParams();
-  // const lat = searchParam.get("lat");
-  // const lng = searchParam.get("lng");
-
   const { getCities, currentCity, isLoading } = useCities();
 
   useEffect(() => {

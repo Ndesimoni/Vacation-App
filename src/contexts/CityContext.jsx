@@ -73,13 +73,13 @@ CityContext.propTypes = {
 };
 
 // custom hook for use context
-const useCities = () => {
+function useCities() {
   const value = useContext(PostContext);
   if (value === undefined)
     throw new Error(
       "your trying to use the use context in a component which is out of context "
     );
   return value;
-};
+}
 
 export { CityContext, useCities };

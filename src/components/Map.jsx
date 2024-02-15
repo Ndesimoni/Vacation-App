@@ -55,10 +55,7 @@ const Map = () => {
         />
 
         {cities.map((city) => (
-          <Marker
-            position={[city.position.lat, city.position.lng]}
-            key={city.id}
-          >
+          <Marker position={[40, 0]} key={city.id}>
             <Popup>
               <span>{city.emoji}</span> <span>{city.cityName}</span>
             </Popup>
