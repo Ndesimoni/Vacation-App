@@ -69,6 +69,31 @@ const Map = () => {
   );
 };
 
+// const Map = () => {
+//   const { cities } = useCities();
+
+//   const [mapPosition, setMapPosition] = useState([40, 0]);
+//   const {
+//     isLoading: isLoadingPosition,
+//     position: geolocationPosition,
+//     getPosition,
+//   } = useGeolocation();
+
+//   const [mapLat, mapLng] = useUrlPosition();
+
+//   useEffect(() => {
+//     if (mapLat && mapLng) setMapPosition([mapLat, mapLng]);
+//   }, [mapLat, mapLng]);
+
+//   useEffect(() => {
+//     if (geolocationPosition)
+//       setMapPosition([geolocationPosition.lat, geolocationPosition.lng]);
+//   }, [geolocationPosition]);
+
+//   return (
+//     <div className={styles.mapContainer}>
+//
+
 // function we created to control the  map for better user experience
 function ChangeCenter({ position }) {
   const map = useMap();

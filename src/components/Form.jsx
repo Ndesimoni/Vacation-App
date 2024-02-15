@@ -29,22 +29,20 @@ function Form() {
   const [emoji, setEmoji] = useState("");
   const [geoCodingError, setGeoCodingError] = useState("");
 
-  const [mapLat, mapLng] = useUrlPosition();
+  const [lat, lng] = useUrlPosition();
 
   const { createCity } = useCities();
 
   const BASE_URL = "https://api.bigdatacloud.net/data/reverse-geocode-client?";
 
   useEffect(() => {
-    if (!mapLat && !mapLng) return;
+    if (!lat && !lng) return;
 
     async function fetchCityData() {
       try {
         setIsLoadingGeolocation(true);
         setGeoCodingError("");
-        const res = await fetch(
-          `${BASE_URL}latitude=${mapLat}&longitude=${mapLng}`
-        );
+        const res = await fetch(`${BASE_URL}latitude=${lat}&longitude=${lng}`);
         const data = await res.json();
 
         if (!data.countryCode)
@@ -61,7 +59,7 @@ function Form() {
       }
     }
     fetchCityData();
-  }, [mapLat, mapLng]);
+  }, [lat, lng]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -75,16 +73,17 @@ function Form() {
       date,
       notes,
       position: {
-        mapLat,
-        mapLng,
+        lat,
+        lng,
       },
     };
+
     createCity(newCity);
   }
 
   if (isLoadingGeolocation) return <Spinner />;
 
-  if (!mapLng && !mapLat)
+  if (!lng && !lat)
     return <Message message="there is no city please click on the map" />;
 
   if (geoCodingError) return <Message message={geoCodingError} />;
