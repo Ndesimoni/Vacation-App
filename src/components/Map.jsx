@@ -46,7 +46,7 @@ const Map = () => {
       <MapContainer
         center={mapPosition}
         zoom={5}
-        scrollWheelZoom={false}
+        scrollWheelZoom={true}
         className={styles.map}
       >
         <TileLayer
@@ -55,7 +55,11 @@ const Map = () => {
         />
 
         {cities.map((city) => (
-          <Marker position={[40, 0]} key={city.id}>
+          <Marker
+            position={[city.position.lat, city.position.lng]}
+            // position={mapPosition}
+            key={city.id}
+          >
             <Popup>
               <span>{city.emoji}</span> <span>{city.cityName}</span>
             </Popup>
@@ -68,31 +72,6 @@ const Map = () => {
     </div>
   );
 };
-
-// const Map = () => {
-//   const { cities } = useCities();
-
-//   const [mapPosition, setMapPosition] = useState([40, 0]);
-//   const {
-//     isLoading: isLoadingPosition,
-//     position: geolocationPosition,
-//     getPosition,
-//   } = useGeolocation();
-
-//   const [mapLat, mapLng] = useUrlPosition();
-
-//   useEffect(() => {
-//     if (mapLat && mapLng) setMapPosition([mapLat, mapLng]);
-//   }, [mapLat, mapLng]);
-
-//   useEffect(() => {
-//     if (geolocationPosition)
-//       setMapPosition([geolocationPosition.lat, geolocationPosition.lng]);
-//   }, [geolocationPosition]);
-
-//   return (
-//     <div className={styles.mapContainer}>
-//
 
 // function we created to control the  map for better user experience
 function ChangeCenter({ position }) {
@@ -115,5 +94,3 @@ ChangeCenter.propTypes = {
 };
 
 export default Map;
-
-/////////////////////////////////////////////////////
