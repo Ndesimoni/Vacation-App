@@ -58,9 +58,31 @@ const CityContext = ({ children }) => {
     }
   }
 
+  async function deleteCity(id) {
+    try {
+      setLoading(true);
+      const res = await fetch(`${BASE_URL}/cities/${id}`, {
+        method: "DELETE",
+      });
+      await res.json();
+      SetCities((cities) => cities.filter((city) => city.id !== id));
+    } catch (err) {
+      console.log(err.message);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <PostContext.Provider
-      value={{ cities, isLoading, currentCity, getCities, createCity }}
+      value={{
+        cities,
+        isLoading,
+        currentCity,
+        getCities,
+        createCity,
+        deleteCity,
+      }}
     >
       {children}
     </PostContext.Provider>
