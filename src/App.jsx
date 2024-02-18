@@ -11,31 +11,34 @@ import City from "./components/City";
 import Form from "./components/Form";
 
 import { CityContext } from "./contexts/CityContext";
+import { AuthProvider } from "./contexts/FakeAuthContext";
 
 // const BASE_URL = "http://localhost:9000";
 
 const App = () => {
   return (
     <div>
-      <CityContext>
-        <BrowserRouter>
-          <Routes>
-            <Route index element={<Homepage />} />
-            <Route path="/pricing" element={<Pricing />} />
-            <Route path="/product" element={<Product />} />
-            <Route path="/log-in" element={<Login />} />
-            <Route path="/app" element={<AppLayout />}>
-              <Route index element={<Navigate replace to="cities" />} />
-              <Route path="cities" element={<CityList />} />
+      <AuthProvider>
+        <CityContext>
+          <BrowserRouter>
+            <Routes>
+              <Route index element={<Homepage />} />
+              <Route path="/pricing" element={<Pricing />} />
+              <Route path="/product" element={<Product />} />
+              <Route path="/log-in" element={<Login />} />
+              <Route path="/app" element={<AppLayout />}>
+                <Route index element={<Navigate replace to="cities" />} />
+                <Route path="cities" element={<CityList />} />
 
-              <Route path="cities/:id" element={<City />} />
+                <Route path="cities/:id" element={<City />} />
 
-              <Route path="countries" element={<CountryList />} />
-              <Route path="form" element={<Form />} />
-            </Route>
-          </Routes>
-        </BrowserRouter>
-      </CityContext>
+                <Route path="countries" element={<CountryList />} />
+                <Route path="form" element={<Form />} />
+              </Route>
+            </Routes>
+          </BrowserRouter>
+        </CityContext>
+      </AuthProvider>
     </div>
   );
 };
