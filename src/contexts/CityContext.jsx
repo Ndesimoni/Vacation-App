@@ -256,7 +256,7 @@ function CityContext({ children }) {
   }, []);
 
   const getCity = useCallback(
-    async function getCity(id) {
+    async (id) => {
       if (Number(id) === currentCity.id) return;
 
       dispatch({ type: "loading" });
